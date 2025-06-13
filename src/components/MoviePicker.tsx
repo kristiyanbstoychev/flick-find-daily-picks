@@ -17,6 +17,7 @@ const MoviePicker = () => {
     await incrementCount();
     const response = await fetchRandomMovie();
     setMovie(response);
+    console.log(response);
   };
 
   const isLoading = limitLoading || apiLoading;
@@ -51,6 +52,7 @@ const MoviePicker = () => {
             : `${remainingClicks} ${remainingClicks === 1 ? "suggestion" : "suggestions"} remaining today`
           }
         </span>
+        <div className="text-xs">Resets every 24 hours</div>
       </div>
 
       {/* Main Button */}
@@ -68,7 +70,7 @@ const MoviePicker = () => {
         ) : isLimitReached ? (
           'Limit Reached'
         ) : (
-          'Get Random Movie'
+          'Suggest a movie'
         )}
       </Button>
 
@@ -90,31 +92,25 @@ const MoviePicker = () => {
               <div className="text-sm text-muted-foreground font-medium">
                 Movie Overview:
               </div>
-              <div className="text-xl font-bold text-foreground leading-tight">
+              <div className="text-base text-foreground leading-tight">
                 {movie.overview}
               </div>
               <div className="text-sm text-muted-foreground font-medium">
                 Movie Release Date:
               </div>
-              <div className="text-xl font-bold text-foreground leading-tight">
+              <div className="text-base font-bold text-foreground leading-tight">
                 {movie.release_date}
               </div>
               <div className="text-sm text-muted-foreground font-medium">
                 Movie Score:
               </div>
-              <div className="text-xl font-bold text-foreground leading-tight">
-                {movie.vote_average}
+              <div className="text-base font-bold text-foreground leading-tight">
+                {movie.vote_average}/10
               </div>
             </div>
           ) : null}
         </Card>
       )}
-
-      {/* Usage Stats */}
-      <div className="text-center space-y-1 text-sm text-muted-foreground">
-        <div>Movies picked today: {clickCount}/20</div>
-        <div className="text-xs">Resets every 24 hours</div>
-      </div>
     </div>
   );
 };
