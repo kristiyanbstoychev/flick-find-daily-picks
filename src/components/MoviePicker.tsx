@@ -94,20 +94,28 @@ const MoviePicker = () => {
               <div className="text-base text-foreground leading-tight">
                 {movie.overview}
               </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                Movie Release Date:
-              </div>
-              <div className="text-base text-foreground leading-tight">
-                 {new Date(movie.release_date).getFullYear()}
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                Movie Score:
-              </div>
-              <div className="text-base text-foreground leading-tight">
-                {Number(movie.vote_average).toFixed(2)}
-              </div>
-            </div>
-          ) : null}
+              {movie.release_date ? (
+                <>
+                  <div className="text-sm text-muted-foreground font-medium">
+                    Movie Release Date:
+                  </div>
+                  <div className="text-base text-foreground leading-tight">
+                    {new Date(movie.release_date).getFullYear()}
+                  </div>
+                </>
+              ) : null}
+              {typeof movie.vote_average === 'number' ? (
+                <>
+                  <div className="text-sm text-muted-foreground font-medium">
+                    Movie Score:
+                  </div>
+                  <div className="text-base text-foreground leading-tight">
+                    {movie.vote_average.toFixed(2)}
+                  </div>
+                </>
+              ) : null}
+               </div>
+              ) : null}
         </Card>
       )}
     </div>
