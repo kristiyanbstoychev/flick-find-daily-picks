@@ -16,6 +16,7 @@ const MoviePicker = () => {
 
     await incrementCount();
     const response = await fetchRandomMovie();
+    setMovie(movie);
     console.log(response);
   };
 
@@ -73,22 +74,22 @@ const MoviePicker = () => {
       </Button>
 
       {/* Movie Display */}
-      {(currentMovieTitle || currentMovieOverview || error) && (
+      {(movie || error) && (
         <Card className="w-full max-w-md p-6 text-center min-h-[120px] flex items-center justify-center">
           {error ? (
             <div className="text-destructive font-medium">
               {error}
             </div>
-          ) : currentMovieTitle, currentMovieOverview ? (
+          ) : movie ? (
             <div className="space-y-2">
               <div className="text-sm text-muted-foreground font-medium">
                 Your Random Movie:
               </div>
               <div className="text-xl font-bold text-foreground leading-tight">
-                {currentMovieTitle}
+                {movie.title}
               </div>
               <div className="text-xl font-bold text-foreground leading-tight">
-                {currentMovieOverview}
+                {movie.overview}
               </div>
             </div>
           ) : null}
