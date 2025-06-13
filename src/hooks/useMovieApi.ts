@@ -13,11 +13,19 @@ interface TMDBResponse {
   total_pages: number;
 }
 
+export const fetchedMovie: Movie = {
+  id: '',
+  title: '',
+  overview: '',
+  release_date: ''
+}
+
 export const useMovieApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [movie, setMovie] = useState<object>(null);
 
-  const fetchRandomMovie = async (): Promise<string | null> => {
+  const fetchRandomMovie = async (): Promise<string | object> => {
     setLoading(true);
     setError(null);
 
@@ -43,7 +51,8 @@ export const useMovieApi = () => {
         // Select a random movie from the results
         const randomIndex = Math.floor(Math.random() * data.results.length);
         const selectedMovie = data.results[randomIndex];
-        return selectedMovie.title;
+        setMovie(selectedMovie);
+        return movie;
       } else {
         throw new Error('No movies found');
       }

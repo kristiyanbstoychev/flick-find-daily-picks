@@ -7,7 +7,7 @@ import { useMovieLimit } from '@/hooks/useMovieLimit';
 import { useMovieApi } from '@/hooks/useMovieApi';
 
 const MoviePicker = () => {
-  const [currentMovie, setCurrentMovie] = useState<string>('');
+  const [movie, setMovie] = useState<object>({});
   const { clickCount, isLimitReached, loading: limitLoading, incrementCount, remainingClicks } = useMovieLimit();
   const { fetchRandomMovie, loading: apiLoading, error } = useMovieApi();
 
@@ -15,11 +15,8 @@ const MoviePicker = () => {
     if (isLimitReached) return;
 
     await incrementCount();
-    const movie = await fetchRandomMovie();
-    
-    if (movie) {
-      setCurrentMovie(movie);
-    }
+    const response = await fetchRandomMovie();
+    console.log(response);
   };
 
   const isLoading = limitLoading || apiLoading;
@@ -76,19 +73,22 @@ const MoviePicker = () => {
       </Button>
 
       {/* Movie Display */}
-      {(currentMovie || error) && (
+      {(currentMovieTitle || currentMovieOverview || error) && (
         <Card className="w-full max-w-md p-6 text-center min-h-[120px] flex items-center justify-center">
           {error ? (
             <div className="text-destructive font-medium">
               {error}
             </div>
-          ) : currentMovie ? (
+          ) : currentMovieTitle, currentMovieOverview ? (
             <div className="space-y-2">
               <div className="text-sm text-muted-foreground font-medium">
                 Your Random Movie:
               </div>
               <div className="text-xl font-bold text-foreground leading-tight">
-                {currentMovie}
+                {currentMovieTitle}
+              </div>
+              <div className="text-xl font-bold text-foreground leading-tight">
+                {currentMovieOverview}
               </div>
             </div>
           ) : null}
