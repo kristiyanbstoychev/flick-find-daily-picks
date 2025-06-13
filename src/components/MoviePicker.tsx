@@ -39,7 +39,7 @@ const MoviePicker = () => {
           <Film className="h-8 w-8 text-primary" />
           <h1 className="text-3xl font-bold text-foreground">Random Movie Picker</h1>
         </div>
-        <p className="text-muted-foreground">Discover your next favorite film</p>
+        <p className="text-muted-foreground">Discover your next favorite movie</p>
       </div>
 
       {/* Usage Counter */}
@@ -48,7 +48,7 @@ const MoviePicker = () => {
         <span>
           {isLimitReached 
             ? "Daily limit reached. Try again tomorrow."
-            : `${remainingClicks} picks remaining today`
+            : `${remainingClicks} ${remainingClicks === 1 ? "suggestion" : "suggestions"} remaining today`
           }
         </span>
       </div>
@@ -112,7 +112,7 @@ const MoviePicker = () => {
 
       {/* Usage Stats */}
       <div className="text-center space-y-1 text-sm text-muted-foreground">
-        <div>Movies picked today: {clickCount}/5</div>
+        <div>Movies picked today: {clickCount}/20</div>
         <div className="text-xs">Resets every 24 hours</div>
       </div>
     </div>
