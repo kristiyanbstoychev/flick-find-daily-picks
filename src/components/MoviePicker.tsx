@@ -17,7 +17,6 @@ const MoviePicker = () => {
     await incrementCount();
     const response = await fetchRandomMovie();
     setMovie(response);
-    console.log(response);
   };
 
   const isLoading = limitLoading || apiLoading;
@@ -88,8 +87,23 @@ const MoviePicker = () => {
               <div className="text-xl font-bold text-foreground leading-tight">
                 {movie.title}
               </div>
+              <div className="text-sm text-muted-foreground font-medium">
+                Movie Overview:
+              </div>
               <div className="text-xl font-bold text-foreground leading-tight">
                 {movie.overview}
+              </div>
+              <div className="text-sm text-muted-foreground font-medium">
+                Movie Release Date:
+              </div>
+              <div className="text-xl font-bold text-foreground leading-tight">
+                {movie.release_date}
+              </div>
+              <div className="text-sm text-muted-foreground font-medium">
+                Movie Score:
+              </div>
+              <div className="text-xl font-bold text-foreground leading-tight">
+                {movie.vote_average}
               </div>
             </div>
           ) : null}
