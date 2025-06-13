@@ -17,6 +17,7 @@ const MoviePicker = () => {
     await incrementCount();
     const response = await fetchRandomMovie();
     setMovie(response);
+    console.log(response);
   };
 
   const isLoading = limitLoading || apiLoading;
