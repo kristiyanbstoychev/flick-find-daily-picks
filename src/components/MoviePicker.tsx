@@ -16,7 +16,7 @@ const MoviePicker = () => {
 
     await incrementCount();
     const response = await fetchRandomMovie();
-    setMovie(movie);
+    setMovie(response);
     console.log(response);
   };
 
