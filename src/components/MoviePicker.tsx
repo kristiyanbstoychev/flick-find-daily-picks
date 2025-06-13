@@ -8,7 +8,7 @@ import { useMovieApi } from '@/hooks/useMovieApi';
 
 const MoviePicker = () => {
   const [movie, setMovie] = useState<object>({});
-  const { clickCount, isLimitReached, loading: limitLoading, incrementCount, remainingClicks } = useMovieLimit();
+  const { isLimitReached, loading: limitLoading, incrementCount, remainingClicks } = useMovieLimit();
   const { fetchRandomMovie, loading: apiLoading, error } = useMovieApi();
 
   const handleGetMovie = async () => {
@@ -37,7 +37,7 @@ const MoviePicker = () => {
       <div className="text-center space-y-2">
         <div className="flex items-center justify-center space-x-2">
           <Film className="h-8 w-8 text-primary" />
-          <h1 className="text-3xl font-bold text-foreground">Random Movie Picker</h1>
+          <h1 className="text-3xl font-bold text-foreground">Random Movie Suggestions</h1>
         </div>
         <p className="text-muted-foreground">Discover your next favorite movie</p>
       </div>
@@ -78,7 +78,7 @@ const MoviePicker = () => {
         <Card className="w-full max-w-md p-6 text-center min-h-[120px] flex items-center justify-center">
           {error ? (
             <div className="text-destructive font-medium">
-              {error}
+              {error} An error occured, please try again!
             </div>
           ) : movie ? (
             <div className="space-y-2">
@@ -97,14 +97,14 @@ const MoviePicker = () => {
               <div className="text-sm text-muted-foreground font-medium">
                 Movie Release Date:
               </div>
-              <div className="text-base font-bold text-foreground leading-tight">
-                {movie.release_date}
+              <div className="text-base text-foreground leading-tight">
+                 {new Date(movie.release_date).getFullYear()}
               </div>
               <div className="text-sm text-muted-foreground font-medium">
                 Movie Score:
               </div>
-              <div className="text-base font-bold text-foreground leading-tight">
-                {movie.vote_average}/10
+              <div className="text-base text-foreground leading-tight">
+                {Number(movie.vote_average).toFixed(2)}
               </div>
             </div>
           ) : null}
