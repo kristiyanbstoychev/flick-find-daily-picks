@@ -89,6 +89,19 @@ const MoviePicker = () => {
               <div className="text-xl font-bold text-foreground leading-tight">
                 {movie.title}
               </div>
+              <div>
+            <div className="text-sm text-muted-foreground font-medium">
+              Movie Overview:
+            </div>
+            <div className="text-base text-foreground leading-tight">
+              {movie.overview}
+              </div>
+              <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={`Poster of ${movie.title}`}
+              className="mt-4 rounded shadow-md"
+              />
+              </div>
               <div className="text-sm text-muted-foreground font-medium">
                 Movie Overview:
               </div>
