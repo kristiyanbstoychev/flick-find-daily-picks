@@ -13,11 +13,12 @@ const MoviePicker = () => {
 
   const handleGetMovie = async () => {
     if (isLimitReached) return;
-
-    await incrementCount();
     const response = await fetchRandomMovie();
-    setMovie(response);
-    console.log(response);
+    if (response !== null) {
+      await incrementCount(); 
+      setMovie(response);
+      console.log(response);
+    }
   };
 
   const isLoading = limitLoading || apiLoading;
