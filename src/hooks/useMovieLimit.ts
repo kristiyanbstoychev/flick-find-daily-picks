@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Preferences } from '@capacitor/preferences';
 
-const DAILY_LIMIT = 15;
+const DAILY_LIMIT = 25;
 const STORAGE_KEY = 'moviePickerData';
 
 interface MoviePickerData {
