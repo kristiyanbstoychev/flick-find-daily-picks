@@ -97,11 +97,6 @@ const MoviePicker = () => {
               alt={`Poster of ${movie.title}`}
               className="mt-4 rounded shadow-md"
               />
-              <div>
-            <div className="text-sm text-muted-foreground font-medium">
-              Movie Overview:
-            </div>
-              </div>
               <div className="text-sm text-muted-foreground font-medium">
                 Movie Overview:
               </div>
